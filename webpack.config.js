@@ -3,6 +3,29 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // 自动生成index.h
 // 自动清理，清理dist旧文件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+class MyPlugin{
+  constructor(options){
+    console.log("MyPlugin constructor:", options);
+  }
+  apply(compiler) {
+    if (compiler.hooks) {
+      // 新版本 webpack 5.x
+      compiler.hooks.compile.tap('MyPlugin', params => {
+        console.log('以同步方式触及 compile 钩子。一个新的编译(compilation)创建之后')
+      })
+      compiler.hooks.done.tap('MyPlugin', params => {
+        console.log('以同步方式触及 compile 钩子。编译完成时')
+      })
+    } else {
+      // 旧版本
+      // console.log(compiler);
+      compiler.plugin("compilation", compilation => {
+        console.log("MyPlugin");
+      });
+    }
+  }
+}
+
 module.exports = {
   entry: {
     index:'./src/index.js',
@@ -14,6 +37,7 @@ module.exports = {
       filename: 'index.html', // 设置输出文件名
       template: 'view/index.html', // 设置模板
     }),
+    new MyPlugin({param: "my plugin"})
   ],
   mode: "production",
 
@@ -28,6 +52,15 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.js$/,
+      //   use: {
+      //     loader: "force-strict-loader", // 自定义loader
+      //     options: {
+      //       sourceMap: true,
+      //     }
+      //   }
+      // },
       {
         test: /\.css$/,
         /*
