@@ -28,7 +28,16 @@ class MyPlugin{
 
 module.exports = {
   entry: {
-    index:'./src/index.js',
+    // index:'./src/index.js',
+    modules: './src/modules.js',
+    // coms: './src/coms.js',
+    // comsCopy: './src/coms copy.js'
+  },
+  output: {
+    filename: '[name].js',
+    // filename: 'modules.js',
+    path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'umd'
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -46,10 +55,6 @@ module.exports = {
   // devServer: {
   //   contentBase: './dist', // webpack-dev-server在哪里寻找文件
   // },
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
-  },
   module: {
     rules: [
       // {

@@ -31,6 +31,8 @@
   },
   "homepage": "https://github.com/a8397550/webpack-demo#readme",
   "dependencies": {
-    "force-strict-loader": "file:../force-strict-loader"
+    "natty-storage": "^2.3.0",
+    "react-dom": "^15.6.2",
+    "react-router": "^2.5.1"
   }
 }
