@@ -12,6 +12,13 @@ app.get("/test", function(req, res) {
   })
 })
 
+app.post("/test-post", function(req, res) {
+  res.json({
+    code: 0,
+    message: "test message"
+  })
+})
+
 // 设置跨域访问  
 app.all('*', function(req, res, next) {  
   console.log("res")
