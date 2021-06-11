@@ -17,6 +17,7 @@
     "xml-loader": "^1.2.1"
   },
   "scripts": {
+    "mock": "node mock.js",
     "start": "node service.js",
     "build": "webpack"
   },
