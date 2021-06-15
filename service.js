@@ -2,7 +2,7 @@
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-
+const fs = require("fs");
 const app = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
@@ -21,6 +21,23 @@ app.all('*', function(req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'dist')))
 
+
+const serveVideo = (req,res) => {
+  const filepath = path.join(__dirname, 'file') + "\\1.mp4";
+
+  fs.stat(filepath, (err, stats) => {
+    if (err) throw err;
+    console.log("fileStat", stats)
+    res.writeHead(200, {
+      'Content-Length': stats.size,
+      'Content-Type': 'video/mp4'
+    })
+    fs.createReadStream(filepath).pipe(res);
+  });
+};
+ 
+ 
+app.get("/getMp4", serveVideo);
 
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
