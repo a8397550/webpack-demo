@@ -1,6 +1,6 @@
 {
   "name": "webpack-demo-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "devDependencies": {
@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/a8397550/webpack-demo#readme",
   "dependencies": {
+    "debug": "^4.3.1",
     "natty-storage": "^2.3.0",
     "react-dom": "^15.6.2",
     "react-router": "^2.5.1",
