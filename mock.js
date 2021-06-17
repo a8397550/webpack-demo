@@ -46,13 +46,30 @@ const serveVideo = (req,res) => {
     });
 
     readable.on("data", function() {
-      console.log("readable data");
+      // console.log("readable data");
     });
 
     const pipe = readable.pipe(res);
-    pipe.on("error", function(err){
-      console.log(err);
+    
+    pipe.on('close', function () {
+      console.log("pipe close")
     })
+    
+    pipe.on("error", function(err){
+      console.log("pipe error:", err);
+    })
+
+    pipe.on("pipe", function(src){ // 这个要提前设置的不然监听不到的。
+      console.log('有数据正通过管道流入写入器');
+    })
+
+    pipe.on("drain", function(){
+      console.log("pipe drain");
+    })
+
+    pipe.on('unpipe', (src) => {
+      console.log('已移除可写流管道');
+    });
 
     pipe.on('finish', () => {
       console.log('写入已完成');
