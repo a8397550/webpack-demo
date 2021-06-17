@@ -30,7 +30,15 @@ const serveVideo = (req,res) => {
       'Content-Length': stats.size,
       'Content-Type': 'video/mp4'
     })
-    fs.createReadStream(filepath).pipe(res);
+
+    const pipe = fs.createReadStream(filepath).pipe(res);
+    pipe.on("error", function(err){
+      console.log(err);
+    })
+
+    pipe.on('finish', () => {
+      console.log('写入已完成');
+    });
   });
 };
 

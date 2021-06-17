@@ -1,16 +1,16 @@
 var ProgressBar = require('progress');
-var https = require('https');
+var http = require('http');
  
-var req = https.request({
-  host: 'download.github.com',
+var req = http.request({
+  host: '1.117.51.164',
   port: 80,
-  path: '/visionmedia-node-jscoverage-0d4608a.zip'
+  path: '/modules.js'
 });
  
 req.on('response', function(res){
   var len = parseInt(res.headers['content-length'], 10);
  
-  console.log();
+  console.log("start");
   var bar = new ProgressBar('  downloading [:bar] :rate/bps :percent :etas', {
     complete: '=',
     incomplete: ' ',
