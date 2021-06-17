@@ -1,6 +1,6 @@
 // /server.js
 const express = require('express');
-
+const fs = require("fs");
 
 const app = express();
 const path = require("path");
@@ -20,11 +20,12 @@ app.post("/test-post", function(req, res) {
 })
 
 const serveVideo = (req,res) => {
-  const filepath = path.join(__dirname, 'file') + "\\1.mp4";
+  const filepath = path.join(__dirname, 'file') + "/1.mp4";
 
   fs.stat(filepath, (err, stats) => {
     if (err) throw err;
-    console.log("fileStat", stats)
+    // console.log("fileStat", stats)
+    console.log("filepath", filepath)
     res.writeHead(200, {
       'Content-Length': stats.size,
       'Content-Type': 'video/mp4'
