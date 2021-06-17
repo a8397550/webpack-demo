@@ -14,3 +14,7 @@ function workb() {
 }
  
 workb();
+
+// DEBUG=* node worker 2>&1 | cat
+// stdout is not a tty
+// 如果有tty的话，会输出带时间的内容
