@@ -31,7 +31,25 @@ const serveVideo = (req,res) => {
       'Content-Type': 'video/mp4'
     })
 
-    const pipe = fs.createReadStream(filepath).pipe(res);
+    const readable = fs.createReadStream(filepath);
+
+    readable.on("error", function(err){
+      console.log('readable error:', err);
+    })
+
+    readable.on("close", function() {
+      console.log("readable close");
+    });
+
+    readable.on("end", function() {
+      console.log("readable end");
+    });
+
+    readable.on("data", function() {
+      console.log("readable data");
+    });
+
+    const pipe = readable.pipe(res);
     pipe.on("error", function(err){
       console.log(err);
     })
