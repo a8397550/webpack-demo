@@ -1,0 +1,67 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-06-23 19:23:59
+ * @LastEditTime: 2021-07-01 08:42:30
+ * @LastEditors: lijunyang
+ * @Description: In User Settings Edit
+ * @FilePath: \webpack-demo\view\canvasDemo.html
+-->
+<!doctype html>
+<html>
+    <head>
+    <title>Canvas</title>
+    <style>
+        body {
+            background-color: rgba(0,0,0, 0.2);
+        }
+
+        canvas {
+            background-color: #fff
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script>
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext('2d');  //取得画布的2d绘图上下文  
+        ctx.moveTo(200, 200);
+        ctx.lineTo(400, 200);
+        ctx.moveTo(200, 200);
+        ctx.lineTo(200, 0);
+
+        function fn(round) {
+            ctx.moveTo(200, 200);
+
+            var r = 200;
+            var x = 200;
+            var y = 200;
+             
+            
+            var x1 =  Math.cos(round * (2 * Math.PI / 360)) * r + r;
+            var y1 =  r - Math.sin(round * (2 * Math.PI / 360)) * r;
+
+            console.log(x1, y1)
+            console.log((y1 - y) / (x1 - x), Math.tan(round * (2 * Math.PI / 360)))
+
+
+            ctx.lineTo(x1, y1);
+            ctx.stroke();
+
+            setTimeout(function(){
+                if (i > 360) {
+                    return
+                }
+                fn(i++)
+            }, 500)
+        }
+
+        var i = 0;
+
+        
+         fn(i++)
+        
+    </script>
+</body>
+</html>
