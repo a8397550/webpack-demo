@@ -1,0 +1,26 @@
+<!--
+ * @Author: lijunyang
+ * @Date: 2021-07-20 14:44:33
+ * @LastEditTime: 2021-07-20 15:09:52
+ * @LastEditors: lijunyang
+ * @Description: 
+-->
+<!-- /dist/index.html -->
+<!doctype html>
+<html>
+<head>
+ <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <div>
+    <h1>验证单点登录</h1>
+    <form action="loginPass" method="post">
+      <input type="text" name="name" value="" placeholder="请输入账号"  />
+      <br />
+      <input type="text" name="password" value="" placeholder="请输入密码" />
+      <br />
+      <button type="submit">提交</button>
+    </form>
+  </div>
+</body>
+</html>
