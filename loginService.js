@@ -20,7 +20,7 @@ app.post('/loginPass', function(req, res) {
   console.log(query, params, body, data, fields, files);
 
   
-  res.cookie("name", fields.name, {maxAge: 900000, httpOnly: false}); 
+  res.cookie("name", fields.name, {maxAge: 900000, httpOnly: false, domain: ".feelacg.com"}); 
   res.cookie("password", fields.password, {maxAge: 900000, httpOnly: false}); 
   const html = fs.readFileSync('./view/loginIndex.html');
   res.setHeader('content-type', 'text/html; charset=UTF-8')
