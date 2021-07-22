@@ -1,0 +1,21 @@
+<!-- /dist/index.html -->
+<!doctype html>
+<html>
+<head>
+ <title>单点登录测试</title>
+</head>
+<body>
+  <script>
+    function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURI(r[2]); return null;
+    }
+    const form = document.createElement("form");
+    document.body.appendChild(form);
+    form.method = "post";
+    form.action = `/verifyLogin?backUri=${getUrlParam('backUri')}`
+    form.submit();
+  </script>
+</body>
+</html>

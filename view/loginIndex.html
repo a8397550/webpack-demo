@@ -7,7 +7,21 @@
 <body>
   <div>验证单点登录</div>
   <div id="text"></div>
+  <div>
+    <button id="testLogin" onclick="testLoginFn()">测试登录</button>
+  </div>
   <script>
+    function testLoginFn () {
+      fetch(`/redirect?backUri=${encodeURIComponent(location.href)}`, {
+        method: 'POST',
+        credentials: 'include'
+      }).then(res => {
+        console.log(res.url.includes('/redirect-page'));
+        if (res.url.includes('/redirect-page')) {
+          open(res.url, '__self')
+        }
+      })
+    }
     function getCookie(name){
       var strCookie=document.cookie;
       var arrCookie=strCookie.split("; ");
